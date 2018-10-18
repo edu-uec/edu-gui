@@ -1,0 +1,19 @@
+#ifndef CPPSIGNALSLOT_H
+#define CPPSIGNALSLOT_H
+#include <QObject>
+#include <QVariant>
+
+class CppSignalSlot : public QObject
+{
+    Q_OBJECT
+public:
+    explicit CppSignalSlot(QObject *parent = std::nullptr_t());
+
+signals:
+    void cppSignal(QVariant text);
+public slots:
+    void cppSlots(QString msg);
+
+};
+
+#endif // CPPSIGNALSLOT_H
