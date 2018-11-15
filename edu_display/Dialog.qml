@@ -7,8 +7,8 @@ Rectangle {
     height: 150
     opacity: 0.8
     visible: false
+    property alias d_text: _text.text //"text:"で_text.textに設定できる
 
-    property alias text: _text.text
     Text {
         id: _text
         anchors.centerIn: parent
