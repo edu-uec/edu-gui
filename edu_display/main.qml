@@ -10,6 +10,7 @@ Window {
     height: 480
 
     Rectangle{
+        id: code_sheet_bg
         x: parent.width * 0.4;
         width: parent.width * 0.6;
         height: parent.height
@@ -93,7 +94,7 @@ Window {
     }
 
     Button {
-        text: "button"
+        text: "add"
 
         onClicked: {
             showBlock("tes");
@@ -101,7 +102,18 @@ Window {
         }
     }
 
+    Button {
+        text: "run"
+        y: 30
+
+        onClicked: {
+            //showBlock("tes");
+            //qmlSignal("a signal from QML");
+        }
+    }
+
     Column {
+        spacing: 10
         Repeater {
            id: _repeater
            model: ListModel {}
@@ -120,7 +132,7 @@ Window {
         id: _dlg
         Dialog {
             property string text
-            width: 160; height: 50
+            width: 160; height: 60
             x: calcX(); y: calcY()
             d_text: text;
         }
@@ -130,7 +142,7 @@ Window {
         return 320;
     }
     function calcY() {
-        return 50;
+        return 10;
     }
 
 }
