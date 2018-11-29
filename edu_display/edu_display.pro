@@ -7,14 +7,29 @@ CONFIG += c++11
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
 
+#INCLUDEPATH += "/usr/local/Cellar/boost/1.67.0_1/"
+#LIBS += "/usr/local/Cellar/boost/1.67.0_1/lib"
+
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+
+
+_BOOST_PATH = /usr/local/Cellar/boost/1.67.0_1
+INCLUDEPATH += "$${_BOOST_PATH}/include/"
+LIBS += -L$${_BOOST_PATH}/lib
+## Use only one of these:
+LIBS += -lboost_chrono-mt -lboost_system # using dynamic lib (not sure if you need that "-mt" at the end or not)
+#LIBS += $${_BOOST_PATH}/lib/libboost_chrono-mt.a # using static lib
+
+
 SOURCES += \
         main.cpp \
-    cppsignalslot.cpp
+    cppsignalslot.cpp \
+    orderdata.cpp \
+    orderprogram.cpp
 
 RESOURCES += qml.qrc
 
@@ -33,4 +48,8 @@ DISTFILES += \
     README.md
 
 HEADERS += \
-    cppsignalslot.h
+    cppsignalslot.h \
+    orderdata.h \
+    unix_socket_client.hpp \
+    unix_socket_server.hpp \
+    orderprogram.h

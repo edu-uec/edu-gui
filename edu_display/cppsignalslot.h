@@ -9,8 +9,11 @@ class CppSignalSlot : public QObject
 public:
     explicit CppSignalSlot(QObject *parent = std::nullptr_t());
 
+//シグナル
 signals:
     void cppSignal(QVariant text);
+
+//スロット
 public slots:
     void cppSlots(QString msg);
 

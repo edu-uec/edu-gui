@@ -18,14 +18,22 @@ Window {
     }
 
     property int dlgNumber: 0
+    property bool isRun: false
     signal qmlSignal(string msg); //定義では型を指定する必要がある。
-    function showBlock(text) {
+
+    function addBlock(text) {
         console.log("dlgNumber is " + dlgNumber);
         if (dlgNumber > 6) {
             dlgNumber = 0;
             _repeater.model.clear();
         } else {
             _repeater.model.append({"_src" : _dlg});
+        }
+    }
+
+    function runProgram(){
+        while (1){
+
         }
     }
 
@@ -97,8 +105,11 @@ Window {
         text: "add"
 
         onClicked: {
-            showBlock("tes");
-            //qmlSignal("a signal from QML");
+            //コードが実行中でないか
+            if (!isRun){
+                addBlock("tes");
+                //qmlSignal("a signal from QML");
+            }
         }
     }
 
@@ -107,6 +118,8 @@ Window {
         y: 30
 
         onClicked: {
+            isRun = true;
+
             //showBlock("tes");
             //qmlSignal("a signal from QML");
         }
