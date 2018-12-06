@@ -6,6 +6,7 @@
 #include<QVariant>
 #include<vector>
 #include<iostream>
+#include <thread>
 
 using namespace std;
 
@@ -22,7 +23,7 @@ public:
     }
 
     Q_INVOKABLE void doOrder(int index) const{
-
+        std::cout << index << std::endl;
     }
 
     void onCommandArrive(std::string command){
@@ -37,9 +38,13 @@ public:
                 int id = std::atoi(command.substr(2, 3).c_str());
                 std::cout << "id: " << id << std::endl;
                 switch (id) {
-                    case 0: //c_000実行
-                        isRunProgram = true;
-                    break;
+                    case 0: { //c_000実行
+//                        isRunProgram = true;
+//                        auto tRunOrderProgram = std::thread([this]{runOrderProgram();});
+//                        tRunOrderProgram.join();
+
+                        break;
+                    }
                     case 1: //c_001消去
                     case 3: //c_003一つ戻る
                         orders.pop_back();
@@ -61,6 +66,14 @@ public:
             }
         }
 
+    }
+
+    void runOrderProgram(){
+        for(QString& order : orders){
+            if(!isRunProgram) {break;}
+            std::cout << order.toStdString() << std::endl;
+
+        }
     }
 
 signals:
