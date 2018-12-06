@@ -1,6 +1,6 @@
 #include "orderprogram.h"
 
-orderProgram::orderProgram()
+OrderProgram::OrderProgram(QObject *parent): QObject(parent)
 {
 
 }

@@ -52,18 +52,14 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../edu_display/main.cpp \
 		../edu_display/cppsignalslot.cpp \
-		../edu_display/orderdata.cpp \
 		../edu_display/orderprogram.cpp qrc_qml.cpp \
 		moc_cppsignalslot.cpp \
-		moc_orderdata.cpp \
 		moc_orderprogram.cpp
 OBJECTS       = main.o \
 		cppsignalslot.o \
-		orderdata.o \
 		orderprogram.o \
 		qrc_qml.o \
 		moc_cppsignalslot.o \
-		moc_orderdata.o \
 		moc_orderprogram.o
 DIST          = ../edu_display/README.md \
 		/Users/minorim_n/Qt/5.11.0/clang_64/mkspecs/features/spec_pre.prf \
@@ -254,12 +250,10 @@ DIST          = ../edu_display/README.md \
 		/Users/minorim_n/Qt/5.11.0/clang_64/mkspecs/features/yacc.prf \
 		/Users/minorim_n/Qt/5.11.0/clang_64/mkspecs/features/lex.prf \
 		../edu_display/edu_display.pro ../edu_display/cppsignalslot.h \
-		../edu_display/orderdata.h \
 		../edu_display/unix_socket_client.hpp \
 		../edu_display/unix_socket_server.hpp \
 		../edu_display/orderprogram.h ../edu_display/main.cpp \
 		../edu_display/cppsignalslot.cpp \
-		../edu_display/orderdata.cpp \
 		../edu_display/orderprogram.cpp
 QMAKE_TARGET  = edu_display
 DESTDIR       = 
@@ -698,8 +692,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../edu_display/qml.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/minorim_n/Qt/5.11.0/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../edu_display/cppsignalslot.h ../edu_display/orderdata.h ../edu_display/unix_socket_client.hpp ../edu_display/unix_socket_server.hpp ../edu_display/orderprogram.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../edu_display/main.cpp ../edu_display/cppsignalslot.cpp ../edu_display/orderdata.cpp ../edu_display/orderprogram.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../edu_display/cppsignalslot.h ../edu_display/unix_socket_client.hpp ../edu_display/unix_socket_server.hpp ../edu_display/orderprogram.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../edu_display/main.cpp ../edu_display/cppsignalslot.cpp ../edu_display/orderprogram.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -739,9 +733,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /Users/minorim_n/Qt/5.11.0/clang_64/mkspecs/features/data/dummy.cpp
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.11 -Wall -W -dM -E -o moc_predefs.h /Users/minorim_n/Qt/5.11.0/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_cppsignalslot.cpp moc_orderdata.cpp moc_orderprogram.cpp
+compiler_moc_header_make_all: moc_cppsignalslot.cpp moc_orderprogram.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_cppsignalslot.cpp moc_orderdata.cpp moc_orderprogram.cpp
+	-$(DEL_FILE) moc_cppsignalslot.cpp moc_orderprogram.cpp
 moc_cppsignalslot.cpp: /Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QObject \
 		/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
 		/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QVariant \
@@ -751,19 +745,12 @@ moc_cppsignalslot.cpp: /Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/
 		/Users/minorim_n/Qt/5.11.0/clang_64/bin/moc
 	/Users/minorim_n/Qt/5.11.0/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/minorim_n/Qt/5.11.0/clang_64/mkspecs/macx-clang -I/Users/minorim_n/Documents/ForSchool/i-CCD/edu-gui/edu_display -I/usr/local/Cellar/boost/1.67.0_1/include -I/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtQuick.framework/Headers -I/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers -I/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtQml.framework/Headers -I/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/minorim_n/Qt/5.11.0/clang_64/lib ../edu_display/cppsignalslot.h -o moc_cppsignalslot.cpp
 
-moc_orderdata.cpp: /Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		../edu_display/orderdata.h \
-		moc_predefs.h \
-		/Users/minorim_n/Qt/5.11.0/clang_64/bin/moc
-	/Users/minorim_n/Qt/5.11.0/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/minorim_n/Qt/5.11.0/clang_64/mkspecs/macx-clang -I/Users/minorim_n/Documents/ForSchool/i-CCD/edu-gui/edu_display -I/usr/local/Cellar/boost/1.67.0_1/include -I/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtQuick.framework/Headers -I/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers -I/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtQml.framework/Headers -I/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/minorim_n/Qt/5.11.0/clang_64/lib ../edu_display/orderdata.h -o moc_orderdata.cpp
-
 moc_orderprogram.cpp: /Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QObject \
 		/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
 		/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QString \
 		/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QVariant \
+		/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qvariant.h \
 		../edu_display/orderprogram.h \
 		moc_predefs.h \
 		/Users/minorim_n/Qt/5.11.0/clang_64/bin/moc
@@ -798,7 +785,7 @@ main.o: ../edu_display/main.cpp /Users/minorim_n/Qt/5.11.0/clang_64/lib/QtGui.fr
 		/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
 		/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QVariant \
 		/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qvariant.h \
-		../edu_display/orderdata.h \
+		../edu_display/orderprogram.h \
 		/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QString \
 		/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		/usr/local/Cellar/boost/1.67.0_1/include/boost/signals2/signal.hpp \
@@ -2364,18 +2351,13 @@ cppsignalslot.o: ../edu_display/cppsignalslot.cpp ../edu_display/cppsignalslot.h
 		/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cppsignalslot.o ../edu_display/cppsignalslot.cpp
 
-orderdata.o: ../edu_display/orderdata.cpp ../edu_display/orderdata.h \
-		/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstring.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o orderdata.o ../edu_display/orderdata.cpp
-
 orderprogram.o: ../edu_display/orderprogram.cpp ../edu_display/orderprogram.h \
 		/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QObject \
 		/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
 		/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstring.h
+		/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QVariant \
+		/Users/minorim_n/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qvariant.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o orderprogram.o ../edu_display/orderprogram.cpp
 
 qrc_qml.o: qrc_qml.cpp 
@@ -2383,9 +2365,6 @@ qrc_qml.o: qrc_qml.cpp
 
 moc_cppsignalslot.o: moc_cppsignalslot.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_cppsignalslot.o moc_cppsignalslot.cpp
-
-moc_orderdata.o: moc_orderdata.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_orderdata.o moc_orderdata.cpp
 
 moc_orderprogram.o: moc_orderprogram.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_orderprogram.o moc_orderprogram.cpp

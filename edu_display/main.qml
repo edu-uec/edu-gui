@@ -23,18 +23,17 @@ Window {
 
     function addBlock(text) {
         console.log("dlgNumber is " + dlgNumber);
-        if (dlgNumber > 6) {
-            dlgNumber = 0;
-            _repeater.model.clear();
-        } else {
-            _repeater.model.append({"_src" : _dlg});
-        }
+        _repeater.model.append({"_src" : _dlg});
+    }
+
+    function deleteBlock() {
+        dlgNumber--;
+        console.log("dlgNumber is " + dlgNumber);
+        _repeater.model.remove(dlgNumber);
     }
 
     function runProgram(){
-        while (1){
 
-        }
     }
 
 
@@ -102,19 +101,19 @@ Window {
     }
 
     Button {
-        text: "add"
+        text: "-add-"
 
         onClicked: {
             //コードが実行中でないか
             if (!isRun){
-                addBlock("tes");
+                //addBlock("tes");
                 //qmlSignal("a signal from QML");
             }
         }
     }
 
     Button {
-        text: "run"
+        text: "-run-"
         y: 30
 
         onClicked: {
@@ -135,7 +134,7 @@ Window {
                onLoaded: {
                    item.visible = true;
                    dlgNumber++;
-                   item.text = orderdata.getOrderName(index);
+                   item.text = orderprogram.getOrderName(index);
                }
            }
         }

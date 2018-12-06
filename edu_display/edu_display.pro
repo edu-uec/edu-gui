@@ -28,7 +28,6 @@ LIBS += -lboost_chrono-mt -lboost_system # using dynamic lib (not sure if you ne
 SOURCES += \
         main.cpp \
     cppsignalslot.cpp \
-    orderdata.cpp \
     orderprogram.cpp
 
 RESOURCES += qml.qrc
@@ -49,7 +48,6 @@ DISTFILES += \
 
 HEADERS += \
     cppsignalslot.h \
-    orderdata.h \
     unix_socket_client.hpp \
     unix_socket_server.hpp \
     orderprogram.h
