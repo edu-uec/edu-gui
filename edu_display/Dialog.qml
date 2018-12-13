@@ -10,6 +10,23 @@ Rectangle {
     visible: false
     property alias d_text: _text.text //"text:"で_text.textに設定できる
 
+    states: [
+        State {
+            name: "Normal"
+            PropertyChanges {
+                target: _root
+                color: "#aaffff"
+            }
+        },
+        State {
+            name: "Running"
+            PropertyChanges {
+                target: _root
+                color: "#ffff00"
+            }
+        }
+    ]
+
     Text {
         id: _text
         anchors.centerIn: parent
@@ -18,11 +35,7 @@ Rectangle {
     }
 
     Component.onCompleted: {
-        var r = 0.7
-        var g = 1.0
-        var b = 1.0
-
-        _root.color = Qt.rgba(r, g, b, 1.0)
+        _root.state = "Normal"
         _root.radius = 10.0
         _text.color = "#000000"
 

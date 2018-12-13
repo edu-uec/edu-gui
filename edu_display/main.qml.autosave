@@ -33,7 +33,7 @@ Window {
     }
 
     function changeBlockColor(index, color){
-        _repeater.model
+        //_repeater.model
         console.log("change color as dlgnum = " + index);
     }
 

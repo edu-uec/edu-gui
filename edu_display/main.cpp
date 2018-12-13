@@ -46,6 +46,8 @@ int main(int argc, char *argv[])
 //    QObject::connect(&obj, SIGNAL(cppSignal(QVariant)), root, SLOT(addBlock(QVariant)));
       QObject::connect(&oprogram, SIGNAL(pushOrderSignal(QVariant)), root, SLOT(addBlock(QVariant)));
       QObject::connect(&oprogram, SIGNAL(deleteOrderSignal()), root, SLOT(deleteBlock()));
+      QObject::connect(&oprogram, SIGNAL(changeOrderBlockColorSignal(QVariant, QVariant)), root, SLOT(changeBlockColor(QVariant, QVariant)));
+
 
     //qmlにオブジェクトを渡す
     engine.rootContext()->setContextProperty("orderprogram", &oprogram);

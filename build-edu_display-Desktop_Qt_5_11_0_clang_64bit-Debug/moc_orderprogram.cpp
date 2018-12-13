@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_OrderProgram_t {
-    QByteArrayData data[8];
-    char stringdata0[80];
+    QByteArrayData data[10];
+    char stringdata0[114];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -36,14 +36,16 @@ QT_MOC_LITERAL(1, 13, 15), // "pushOrderSignal"
 QT_MOC_LITERAL(2, 29, 0), // ""
 QT_MOC_LITERAL(3, 30, 4), // "text"
 QT_MOC_LITERAL(4, 35, 17), // "deleteOrderSignal"
-QT_MOC_LITERAL(5, 53, 12), // "getOrderName"
-QT_MOC_LITERAL(6, 66, 5), // "index"
-QT_MOC_LITERAL(7, 72, 7) // "doOrder"
+QT_MOC_LITERAL(5, 53, 27), // "changeOrderBlockColorSignal"
+QT_MOC_LITERAL(6, 81, 5), // "index"
+QT_MOC_LITERAL(7, 87, 5), // "color"
+QT_MOC_LITERAL(8, 93, 12), // "getOrderName"
+QT_MOC_LITERAL(9, 106, 7) // "doOrder"
 
     },
     "OrderProgram\0pushOrderSignal\0\0text\0"
-    "deleteOrderSignal\0getOrderName\0index\0"
-    "doOrder"
+    "deleteOrderSignal\0changeOrderBlockColorSignal\0"
+    "index\0color\0getOrderName\0doOrder"
 };
 #undef QT_MOC_LITERAL
 
@@ -53,24 +55,26 @@ static const uint qt_meta_data_OrderProgram[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       2,       // signalCount
+       3,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   34,    2, 0x06 /* Public */,
-       4,    0,   37,    2, 0x06 /* Public */,
+       1,    1,   39,    2, 0x06 /* Public */,
+       4,    0,   42,    2, 0x06 /* Public */,
+       5,    2,   43,    2, 0x06 /* Public */,
 
  // methods: name, argc, parameters, tag, flags
-       5,    1,   38,    2, 0x02 /* Public */,
-       7,    1,   41,    2, 0x02 /* Public */,
+       8,    1,   48,    2, 0x02 /* Public */,
+       9,    1,   51,    2, 0x02 /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QVariant,    3,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QVariant, QMetaType::QVariant,    6,    7,
 
  // methods: parameters
     QMetaType::QString, QMetaType::Int,    6,
@@ -87,9 +91,10 @@ void OrderProgram::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         switch (_id) {
         case 0: _t->pushOrderSignal((*reinterpret_cast< QVariant(*)>(_a[1]))); break;
         case 1: _t->deleteOrderSignal(); break;
-        case 2: { QString _r = _t->getOrderName((*reinterpret_cast< int(*)>(_a[1])));
+        case 2: _t->changeOrderBlockColorSignal((*reinterpret_cast< QVariant(*)>(_a[1])),(*reinterpret_cast< QVariant(*)>(_a[2]))); break;
+        case 3: { QString _r = _t->getOrderName((*reinterpret_cast< int(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
-        case 3: _t->doOrder((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 4: _t->doOrder((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -105,6 +110,13 @@ void OrderProgram::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
             using _t = void (OrderProgram::*)();
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&OrderProgram::deleteOrderSignal)) {
                 *result = 1;
+                return;
+            }
+        }
+        {
+            using _t = void (OrderProgram::*)(QVariant , QVariant );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&OrderProgram::changeOrderBlockColorSignal)) {
+                *result = 2;
                 return;
             }
         }
@@ -136,13 +148,13 @@ int OrderProgram::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 5)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 4;
+        _id -= 5;
     }
     return _id;
 }
@@ -158,6 +170,13 @@ void OrderProgram::pushOrderSignal(QVariant _t1)
 void OrderProgram::deleteOrderSignal()
 {
     QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
+}
+
+// SIGNAL 2
+void OrderProgram::changeOrderBlockColorSignal(QVariant _t1, QVariant _t2)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

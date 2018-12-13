@@ -7,6 +7,7 @@
 #include<vector>
 #include<iostream>
 #include <thread>
+#include <unistd.h>
 
 using namespace std;
 
@@ -14,12 +15,14 @@ class OrderProgram : public QObject
 {
     Q_OBJECT
 public:
-    bool isRunProgram = false;
+    atomic_bool isRunProgram;
 
-    explicit OrderProgram(QObject *parent = std::nullptr_t());
+    explicit OrderProgram(QObject *parent = std::nullptr_t()) : QObject(parent){
+        isRunProgram = false;
+    }
 
     Q_INVOKABLE QString getOrderName(int index) const{
-        return index < orders.size() ? orders[index] : "error";
+        return static_cast<unsigned long>(index) < orders.size() ? orders[static_cast<unsigned long>(index)] : "error";
     }
 
     Q_INVOKABLE void doOrder(int index) const{
@@ -38,19 +41,19 @@ public:
                 int id = std::atoi(command.substr(2, 3).c_str());
                 std::cout << "id: " << id << std::endl;
                 switch (id) {
-                    case 0: { //c_000実行
-//                        isRunProgram = true;
-//                        auto tRunOrderProgram = std::thread([this]{runOrderProgram();});
-//                        tRunOrderProgram.join();
-
+                    case 0:{ //c_000実行
+                        isRunProgram = true;
+                        auto tRunOrderProgram = std::thread([this]{runOrderProgram();});
+                        tRunOrderProgram.join();
                         break;
                     }
                     case 1: //c_001消去
                     case 3: //c_003一つ戻る
+                    if(!orders.empty()){
                         orders.pop_back();
                         emit deleteOrderSignal();
+                    }
                     break;
-
                 }
             }
         }else{
@@ -58,10 +61,9 @@ public:
                 int id = std::atoi(command.substr(2, 3).c_str());
                 std::cout << "id: " << id << std::endl;
                 switch (id) {
-                    case 0: //c_000実行
+                    case 2: //c_002中止
                         isRunProgram = false;
                     break;
-
                 }
             }
         }
@@ -71,14 +73,19 @@ public:
     void runOrderProgram(){
         for(QString& order : orders){
             if(!isRunProgram) {break;}
-            std::cout << order.toStdString() << std::endl;
-
+            std::cout << "run: " << order.toStdString() << std::endl; //送信処理
+            emit changeOrderBlockColorSignal(0, "#ff0000");
+            std::chrono::milliseconds time(2000);
+            std::this_thread::sleep_for(time);
         }
+        isRunProgram = false;
+        std::cout << "program finished! " << std::endl;
     }
 
 signals:
     void pushOrderSignal(QVariant text);
     void deleteOrderSignal();
+    void changeOrderBlockColorSignal(QVariant index, QVariant color);
 
 private:
     vector<QString> orders;
