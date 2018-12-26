@@ -21,7 +21,7 @@ _BOOST_PATH = /usr/local/Cellar/boost/1.67.0_1
 INCLUDEPATH += "$${_BOOST_PATH}/include/"
 LIBS += -L$${_BOOST_PATH}/lib
 ## Use only one of these:
-LIBS += -lboost_chrono-mt -lboost_system # using dynamic lib (not sure if you need that "-mt" at the end or not)
+LIBS += -lboost_system # using dynamic lib (not sure if you need that "-mt" at the end or not)
 #LIBS += $${_BOOST_PATH}/lib/libboost_chrono-mt.a # using static lib
 
 
