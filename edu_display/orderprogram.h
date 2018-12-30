@@ -8,6 +8,7 @@
 #include<iostream>
 #include <thread>
 #include <unistd.h>
+#include <list>
 
 using namespace std;
 
@@ -22,7 +23,7 @@ public:
     }
 
     Q_INVOKABLE QString getOrderName(int index) const{
-        return static_cast<unsigned long>(index) < orders.size() ? orders[static_cast<unsigned long>(index)] : "error";
+        return static_cast<unsigned long>(index) < orders.size() ? QString::fromStdString(orders[static_cast<unsigned long>(index)]) : "error";
     }
 
     Q_INVOKABLE void doOrder(int index) const{
@@ -33,10 +34,8 @@ public:
         std::cout << command << std::endl;
         if(!isRunProgram){
             if(command[0] == 'w'){
-            QString sCommand = QString::fromStdString(command);
-            orders.push_back(sCommand);
-
-            emit pushOrderSignal(sCommand);
+            orders.push_back(command.substr(2,3));
+            emit pushOrderSignal(QString::fromStdString(command));
             }else{
                 int id = std::atoi(command.substr(2, 3).c_str());
                 std::cout << "id: " << id << std::endl;
@@ -44,7 +43,7 @@ public:
                     case 0:{ //c_000実行
                         isRunProgram = true;
                         auto tRunOrderProgram = std::thread([this]{runOrderProgram();});
-                        tRunOrderProgram.join();
+                        tRunOrderProgram.detach();
                         break;
                     }
                     case 1: //c_001消去
@@ -71,13 +70,15 @@ public:
     }
 
     void runOrderProgram(){
-        for(QString& order : orders){
+        for(string& order : orders){
             if(!isRunProgram) {break;}
-            std::cout << "run: " << order.toStdString() << std::endl; //送信処理
+            std::cout << "run: " << order << std::endl; //送信処理
             emit changeOrderBlockColorSignal(0, "#ff0000");
             std::chrono::milliseconds time(2000);
             std::this_thread::sleep_for(time);
         }
+
+
         isRunProgram = false;
         std::cout << "program finished! " << std::endl;
     }
@@ -88,7 +89,7 @@ signals:
     void changeOrderBlockColorSignal(QVariant index, QVariant color);
 
 private:
-    vector<QString> orders;
+    vector<string> orders;
 };
 
 

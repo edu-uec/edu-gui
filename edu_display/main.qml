@@ -37,12 +37,12 @@ Window {
         console.log("change color as dlgnum = " + index);
     }
 
-
     Shape {
-        id: edu_face;
+        id: edu_face_normal;
         y: 100;
         width: 250;
         height: 250;
+        visible: true
 
         ShapePath {
                 id: edu_right_eye
@@ -50,14 +50,14 @@ Window {
                 strokeColor: "black"
                 fillColor: "transparent"
 
-                startX: edu_face.width * edu_face.getRightEyePosX();
+                startX: edu_face_normal.width * edu_face_normal.getRightEyePosX();
                 SequentialAnimation on startY {
                                 loops: Animation.Infinite
-                                NumberAnimation { from: edu_face.height * 0.3; to: edu_face.height * 0.3; duration: 5000 }
-                                NumberAnimation { from: edu_face.height * 0.3; to: edu_face.height * 0.5; duration: 500 }
-                                NumberAnimation { from: edu_face.height * 0.5; to: edu_face.height * 0.3; duration: 1000 }
+                                NumberAnimation { from: edu_face_normal.height * 0.3; to: edu_face_normal.height * 0.3; duration: 5000 }
+                                NumberAnimation { from: edu_face_normal.height * 0.3; to: edu_face_normal.height * 0.5; duration: 500 }
+                                NumberAnimation { from: edu_face_normal.height * 0.5; to: edu_face_normal.height * 0.3; duration: 1000 }
                             }
-                PathLine { x: edu_face.width * edu_face.getRightEyePosX(); y: edu_face.height * 0.5 }
+                PathLine { x: edu_face_normal.width * edu_face_normal.getRightEyePosX(); y: edu_face_normal.height * 0.5 }
         }
 
         ShapePath {
@@ -66,31 +66,31 @@ Window {
                 strokeColor: "black"
                 fillColor: "transparent"
 
-                startX: edu_face.width * edu_face.getLeftEyePosX();
+                startX: edu_face_normal.width * edu_face_normal.getLeftEyePosX();
                 SequentialAnimation on startY {
                                 loops: Animation.Infinite
-                                NumberAnimation { from: edu_face.height * 0.3; to: edu_face.height * 0.3; duration: 5000 }
-                                NumberAnimation { from: edu_face.height * 0.3; to: edu_face.height * 0.5; duration: 500 }
-                                NumberAnimation { from: edu_face.height * 0.5; to: edu_face.height * 0.3; duration: 1000 }
+                                NumberAnimation { from: edu_face_normal.height * 0.3; to: edu_face_normal.height * 0.3; duration: 5000 }
+                                NumberAnimation { from: edu_face_normal.height * 0.3; to: edu_face_normal.height * 0.5; duration: 500 }
+                                NumberAnimation { from: edu_face_normal.height * 0.5; to: edu_face_normal.height * 0.3; duration: 1000 }
                             }
-                PathLine { x: edu_face.width * edu_face.getLeftEyePosX(); y: edu_face.height * 0.5 }
+                PathLine { x: edu_face_normal.width * edu_face_normal.getLeftEyePosX(); y: edu_face_normal.height * 0.5 }
         }
-
-
 
         ShapePath {
                 id: edu_mouth
                 strokeColor: "black"
                 strokeWidth: 5
                 capStyle: ShapePath.RoundCap
-
-                startX: edu_face.width * 0.2; startY: edu_face.height * 0.6;
+                //transform : Translate{x: edu_face_normal.width * 0.2; y:edu_face_normal.height * 0.6; }
+                startX: edu_face_normal.width * 0.2; startY: edu_face_normal.height * 0.6;
                 PathCubic {
-                    x: edu_face.width * 0.8; y: edu_face.height * 0.6;
-                    control1X: edu_face.width * 0.5; control1Y: edu_face.height * 0.8;
-                    control2X: edu_face.width * 0.5; control2Y: edu_face.height * 0.8;
+                    x: edu_face_normal.width * 0.8; y: edu_face_normal.height * 0.6;
+                    control1X: edu_face_normal.width * 0.5; control1Y: edu_face_normal.height * 0.8;
+                    control2X: edu_face_normal.width * 0.5; control2Y: edu_face_normal.height * 0.8;
+
                 }
-            }
+        }
+
 
         function getRightEyePosX(){
             return 0.6;
@@ -100,6 +100,71 @@ Window {
         }
 
     }
+
+
+    Shape {
+        id: edu_face_smile;
+        y: 100;
+        width: 250;
+        height: 250;
+        visible: false
+
+        ShapePath {
+                id: edu_right_eye_normal
+                strokeWidth: 5
+                strokeColor: "black"
+                fillColor: "transparent"
+
+                startX: edu_face_normal.width * edu_face_normal.getRightEyePosX();
+                SequentialAnimation on startY {
+                                loops: Animation.Infinite
+                                NumberAnimation { from: edu_face_normal.height * 0.3; to: edu_face_normal.height * 0.3; duration: 5000 }
+                                NumberAnimation { from: edu_face_normal.height * 0.3; to: edu_face_normal.height * 0.5; duration: 500 }
+                                NumberAnimation { from: edu_face_normal.height * 0.5; to: edu_face_normal.height * 0.3; duration: 1000 }
+                            }
+                PathLine { x: edu_face_normal.width * edu_face_normal.getRightEyePosX(); y: edu_face_normal.height * 0.5 }
+        }
+
+        ShapePath {
+                id: edu_left_eye_normal
+                strokeWidth: 5
+                strokeColor: "black"
+                fillColor: "transparent"
+
+                startX: edu_face_normal.width * edu_face_normal.getLeftEyePosX();
+                SequentialAnimation on startY {
+                                loops: Animation.Infinite
+                                NumberAnimation { from: edu_face_normal.height * 0.3; to: edu_face_normal.height * 0.3; duration: 5000 }
+                                NumberAnimation { from: edu_face_normal.height * 0.3; to: edu_face_normal.height * 0.5; duration: 500 }
+                                NumberAnimation { from: edu_face_normal.height * 0.5; to: edu_face_normal.height * 0.3; duration: 1000 }
+                            }
+                PathLine { x: edu_face_normal.width * edu_face_normal.getLeftEyePosX(); y: edu_face_normal.height * 0.5 }
+        }
+
+        ShapePath {
+                id: edu_mouth_normal
+                strokeColor: "black"
+                strokeWidth: 5
+                capStyle: ShapePath.RoundCap
+
+                startX: edu_face_normal.width * 0.2; startY: edu_face_normal.height * 0.6;
+                PathCubic {
+                    x: edu_face_normal.width * 0.8; y: edu_face_normal.height * 0.6;
+                    control1X: edu_face_normal.width * 0.5; control1Y: edu_face_normal.height * 0.8;
+                    control2X: edu_face_normal.width * 0.5; control2Y: edu_face_normal.height * 0.8;
+                }
+        }
+
+
+        function getRightEyePosX(){
+            return 0.6;
+        }
+        function getLeftEyePosX(){
+            return 0.4;
+        }
+
+    }
+
 
     Button {
         text: "-add-"
@@ -158,4 +223,6 @@ Window {
     }
 
 }
+
+
 

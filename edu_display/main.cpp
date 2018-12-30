@@ -27,16 +27,20 @@ int main(int argc, char *argv[])
 
 
     asio::io_service io_service;
-        unlink("/tmp/unix_socket_test");
-        UnixSocketServer unixSocketServer1(io_service);
-        OrderProgram oprogram;
-        unixSocketServer1.commandArriveEvent.connect(boost::bind(&OrderProgram::onCommandArrive, &oprogram, _1));
-        std::thread threadServer([&unixSocketServer1]{
-            unixSocketServer1.accept();
-            while (true){
-                unixSocketServer1.read();
-            }
-        });
+    unlink("/tmp/unix_socket_test");
+    UnixSocketServer unixSocketServer1(io_service);
+    OrderProgram oprogram;
+    unixSocketServer1.commandArriveEvent.connect(boost::bind(&OrderProgram::onCommandArrive, &oprogram, _1));
+    std::thread threadServer([&unixSocketServer1]{
+        unixSocketServer1.accept();
+        while (true){
+            unixSocketServer1.read();
+        }
+    });
+
+//    std::thread threadArduino([]{
+
+//    });
 
 
 
