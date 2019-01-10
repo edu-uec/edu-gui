@@ -3,5 +3,7 @@
         <file>main.qml</file>
         <file>MainForm.ui.qml</file>
         <file>Dialog.qml</file>
+        <file>EduFace.qml</file>
+        <file>EduMessageWindow.qml</file>
     </qresource>
 </RCC>
