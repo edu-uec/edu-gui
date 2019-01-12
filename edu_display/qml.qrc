@@ -5,5 +5,7 @@
         <file>Dialog.qml</file>
         <file>EduFace.qml</file>
         <file>EduMessageWindow.qml</file>
+        <file>image/qtlogo.png</file>
+        <file>image/dog.jpg</file>
     </qresource>
 </RCC>

@@ -2,19 +2,24 @@ import QtQuick 2.0
 import QtQuick.Shapes 1.11
 
 Item{
+    id: _root
     property int lastFace: 0
+
+    property variant faceIds: [normal_face, smile_face]
 
     Shape {
         id: normal_face;
         width: parent.width;
         height: parent.height;
-        visible: true;
+        visible: true
 
         property int faceAmplitude: 10
         property int animeDurationAdjustment: 12
 
         property double rightEyePosX: 0.4
         property double leftEyePosX: 0.6
+
+
 
         //同じShapeObject内でアニメーションを重ねがけすると何故か実行スピードが倍数で上昇するので計測の結果分かった倍率をdurationにかけている
         ParallelAnimation {
@@ -61,7 +66,8 @@ Item{
             strokeColor: "black"
             strokeWidth: 5
             capStyle: ShapePath.RoundCap
-            //transform : Translate{x: normal_face.width * 0.2; y:normal_face.height * 0.6; }
+            fillColor: "transparent"
+
             startX: normal_face.width * 0.2; startY: normal_face.height * 0.6;
             PathCurve { x: normal_face.width * 0.5; y: normal_face.height * 0.7; }
             PathCurve { x: normal_face.width * 0.8; y: normal_face.height * 0.6; }
@@ -191,25 +197,11 @@ Item{
     }
 
     function offFace(index){
-        switch(index){
-        case 0:
-            normal_face.visible = false;
-            break;
-        case 1:
-            smile_face.visible = false;
-            break;
-        }
+        faceIds[index].visible = false
     }
 
     function onFace(index){
-        switch(index){
-        case 0:
-            normal_face.visible = true;
-            break;
-        case 1:
-            smile_face.visible = true;
-            break;
-        }
+        faceIds[index].visible = true
     }
 }
 

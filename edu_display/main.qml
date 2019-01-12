@@ -19,6 +19,7 @@ Window {
 
     property int dlgNumber: 0
     property bool isRun: false
+    property bool visibleMessageWindow: true
     signal qmlSignal(string msg); //定義では型を指定する必要がある。
 
     function addBlock(text) {
@@ -38,10 +39,11 @@ Window {
 
     EduMessageWindow{
         id: edu_message
-        width: parent.width * 0.4
-        height: parent.height * 0.35
-        y: parent.height * 0.65
+        width: parent.width * 0.5
+        height: parent.height * 0.5
+        y: parent.height * 0.5
 
+        visible: visibleMessageWindow
     }
 
     EduFace{
@@ -49,23 +51,27 @@ Window {
         width: parent.width * 0.3
         height: parent.width * 0.3
         x: parent.width * 0.05
-        y: parent.height * 0.25
+        y: parent.height * 0.07
     }
 
     Button {
-        text: "-add-"
-        visible: false
+        text: "mes"
+        x : 40
+        width: 40
         onClicked: {
-            //コードが実行中でないか
-            //            if (!isRun){
-            //                addBlock("tes");
-            //                qmlSignal("a signal from QML");
-            //            }
+            if(visibleMessageWindow){
+                visibleMessageWindow = false
+                edu_face.y = parent.height * 0.25
+            }else{
+                visibleMessageWindow = true
+                edu_face.y = parent.height * 0.07
+            }
         }
     }
 
     Button {
         text: "face"
+        width: 40
 
         onClicked: {
             edu_face.changeFace(edu_face.lastFace === 0 ? 1 : 0)
