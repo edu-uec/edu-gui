@@ -92,17 +92,9 @@ Window {
         id: _dlg
         Dialog {
             property string text
-            width: getParentWidth() * 0.4; height: getParentHeight() * 0.2
-            x: getParentWidth() * 0.5; y: 10
+            width: _root.width * 0.4; height: _root.height * 0.2
+            x: _root.width * 0.5; y: 10
             d_text: text;
         }
-    }
-
-    function getParentWidth(){
-        return width;
-    }
-
-    function getParentHeight(){
-        return height;
     }
 }
