@@ -1,15 +1,19 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QQuickView>
 #include <QDebug>
-#include "cppsignalslot.h"
-#include "orderprogram.h"
 
 #include <iostream>
 #include <thread>
 #include <boost/signals2/signal.hpp>
 #include <boost/bind.hpp>
+
 #include "unix_socket_server.hpp"
+#include "cppsignalslot.h"
+#include "orderprogram.h"
+
+#include "commandmodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -17,7 +21,11 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
+    CommandModel commandModel;
+
     QQmlApplicationEngine engine;
+    QQmlContext* context = engine.rootContext();
+    context->setContextProperty("commandModel", &commandModel);
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
