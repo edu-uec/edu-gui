@@ -1,4 +1,5 @@
 QT += quick
+QT += sql
 CONFIG += c++11
 
 # The following define makes your compiler emit warnings if you use
@@ -17,7 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 
-_BOOST_PATH = /usr/local/Cellar/boost/1.67.0_1
+_BOOST_PATH = /usr/local
 INCLUDEPATH += "$${_BOOST_PATH}/include/"
 LIBS += -L$${_BOOST_PATH}/lib
 ## Use only one of these:
@@ -28,7 +29,11 @@ LIBS += -lboost_system # using dynamic lib (not sure if you need that "-mt" at t
 SOURCES += \
         main.cpp \
     cppsignalslot.cpp \
-    orderprogram.cpp
+    orderprogram.cpp \
+    commandmodel.cpp \
+    commanddao.cpp \
+    command.cpp \
+    databasemanager.cpp
 
 RESOURCES += qml.qrc
 
@@ -50,4 +55,8 @@ HEADERS += \
     cppsignalslot.h \
     unix_socket_client.hpp \
     unix_socket_server.hpp \
-    orderprogram.h
+    orderprogram.h \
+    commandmodel.h \
+    commanddao.h \
+    command.h \
+    databasemanager.h
