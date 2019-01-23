@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>Dialog.qml</file>
+        <file>CommandDialog.qml</file>
         <file>EduFace.qml</file>
         <file>EduMessageWindow.qml</file>
         <file>image/qtlogo.png</file>
