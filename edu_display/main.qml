@@ -11,10 +11,43 @@ Window {
 
     Rectangle{
         id: code_sheet_bg
-        x: parent.width * 0.4;
-        width: parent.width * 0.6;
+        anchors.right: parent.right
+        width: parent.width * 0.5;
         height: parent.height;
         color:"#ffdddd";
+
+        ListView {
+            id: commandList
+            model: commandModel
+            spacing: 5
+            anchors.fill: parent
+            anchors.margins: 20
+
+            delegate: Rectangle {
+                anchors.horizontalCenter: parent.horizontalCenter
+                width: parent.width
+                height: 60
+                opacity: 0.8
+                radius: 10
+                color: Style.buttonBackground
+
+                Text {
+                    text: name
+                    font.pointSize: 16
+                    color: Style.text
+                    anchors.centerIn: parent
+                }
+
+                Text {
+                    text: index
+                    font.pointSize: 16
+                    color: Style.text
+                    anchors.left: parent.left
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.leftMargin: 10
+                }
+            }
+        }
     }
 
     property int dlgNumber: 0
@@ -55,6 +88,15 @@ Window {
     }
 
     Button {
+        text: "face"
+        width: 40
+
+        onClicked: {
+            edu_face.changeFace(edu_face.lastFace === 0 ? 1 : 0)
+        }
+    }
+
+    Button {
         text: "mes"
         x : 40
         width: 40
@@ -70,11 +112,22 @@ Window {
     }
 
     Button {
-        text: "face"
-        width: 40
+        text: "add"
+        x : 80
+        width:40
 
         onClicked: {
-            edu_face.changeFace(edu_face.lastFace === 0 ? 1 : 0)
+            commandModel.addCommandFromName("Go")
+        }
+    }
+
+    Button {
+        text: "remove"
+        x : 120
+        width:80
+
+        onClicked: {
+            commandModel.removeRows(commandModel.rowCount()-1 , 1) //remove last element
         }
     }
 
@@ -96,7 +149,7 @@ Window {
 
     Component {
         id: _dlg
-        Dialog {
+        CommandDialog {
             property string text
             width: _root.width * 0.4; height: _root.height * 0.2
             x: _root.width * 0.5; y: 10
