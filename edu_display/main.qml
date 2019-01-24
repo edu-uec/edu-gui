@@ -29,19 +29,17 @@ Window {
                 height: 60
                 opacity: 0.8
                 radius: 10
-                color: Style.buttonBackground
+                color:"#A9F5F2";
 
                 Text {
                     text: name
                     font.pointSize: 16
-                    color: Style.text
                     anchors.centerIn: parent
                 }
 
                 Text {
                     text: index
                     font.pointSize: 16
-                    color: Style.text
                     anchors.left: parent.left
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.leftMargin: 10
@@ -57,7 +55,7 @@ Window {
 
     function addBlock(text) {
         console.log("add as dlgnum = " + dlgNumber);
-        _repeater.model.append({"_src" : _dlg});
+        _repeater.model.append({"_src" : _dlgcomponent});
     }
 
     function deleteBlock() {
@@ -113,7 +111,7 @@ Window {
 
     Button {
         text: "add"
-        x : 80
+        x : 120
         width:40
 
         onClicked: {
@@ -123,13 +121,15 @@ Window {
 
     Button {
         text: "remove"
-        x : 120
+        x : 160
         width:80
 
         onClicked: {
             commandModel.removeRows(commandModel.rowCount()-1 , 1) //remove last element
         }
     }
+
+    property int modelIndex: 0
 
     Column {
         spacing: 10
@@ -147,13 +147,36 @@ Window {
         }
     }
 
+    Button {
+        text: "run"
+        x : 80
+        width: 40
+        onClicked: {
+            setPresentOrderBoxesState(modelIndex++)
+        }
+    }
+
+    function setPresentOrderBoxesState(index){
+        if(_repeater.count > 0){
+        var thisIndex = index % _repeater.count
+        var preIndex = (index - 1) % _repeater.count
+        console.log("i:" + index, "t:" + thisIndex, "p:" + preIndex, "rc:" + _repeater.count)
+        if(preIndex >= 0){ changeOrderBoxColor(preIndex, false) }
+        changeOrderBoxColor(thisIndex, true)
+        }
+
+    }
+    function changeOrderBoxColor(index, inProcess){
+        _repeater.itemAt(index).rColor = inProcess ? "#ffff00" : "#aaffff"
+    }
+
     Component {
         id: _dlg
         CommandDialog {
             property string text
             width: _root.width * 0.4; height: _root.height * 0.2
             x: _root.width * 0.5; y: 10
-            d_text: text;
+            d_text: text
         }
     }
 }
