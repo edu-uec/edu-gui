@@ -10,23 +10,6 @@ Rectangle {
     visible: false
     property alias d_text: _text.text //"text:"で_text.textに設定できる
 
-    states: [
-        State {
-            name: "Normal"
-            PropertyChanges {
-                target: _root
-                color: "#aaffff"
-            }
-        },
-        State {
-            name: "Running"
-            PropertyChanges {
-                target: _root
-                color: "#ffff00"
-            }
-        }
-    ]
-
     Text {
         id: _text
         anchors.centerIn: parent
@@ -35,16 +18,6 @@ Rectangle {
     }
 
     Component.onCompleted: {
-        _root.state = "Normal"
         _root.radius = 10.0
-        _text.color = "#000000"
-
-        /*
-        if ((r + g + b) < 1.5) {
-            _text.color = "#ffffff"
-        } else {
-            _text.color = "#000000"
-        }
-        */
     }
 }

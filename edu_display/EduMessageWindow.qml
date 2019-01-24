@@ -10,7 +10,7 @@ Rectangle {
 
     property variant texts: [
         ["text1", 0],
-        ["text2", 0],
+        ["textjrkjejtertjejkrtjejtjerjrktjkejkrtjkertkjkjerejktekjtkjerjkjkejkterjktjketjkekjtjkertjkrjkrejkjkejkrtjkejktrejktjketkjrejkjketrkj", -1],
         ["text1uhfsdksjfhksjfhskjfhkshfkjdsjhfdh", 1],
         ["text3jfdhgdkjshfgjhdkjshgfksjhfgkshdfjkghskjhkdjfhgkjfdksdhfjhgjhfksfjghjkhfkjshdfkgjhkdfjhgkjsdfjkghfkdsjjk", 1]
     ]
@@ -35,7 +35,6 @@ Rectangle {
     Text{
         id: text
         width: parent.width * 0.66
-
         height: parent.height
         anchors.left: image.right
         anchors.leftMargin: parent.width * 0.02
@@ -75,9 +74,7 @@ Rectangle {
     function changeNextContents(){
         var index = textIndex + 1
         if(index < texts.length){
-            var textsData = texts[index]
-            text.text = textsData[0]
-            image.source = images[textsData[1]]
+            setContent(texts[index])
             textIndex = index
         }
     }
@@ -85,11 +82,25 @@ Rectangle {
     function changePrevContents(){
         var index = textIndex - 1
         if(index >= 0){
-            var textsData = texts[index]
-            text.text = textsData[0]
-            image.source = images[textsData[1]]
+            setContent(texts[index])
             textIndex = index
         }
+    }
+
+    function setContent(textsData){
+        if(textsData[1] !== -1){
+            image.source = images[textsData[1]]
+            image.width = width * 0.28
+
+            text.width = width * 0.66
+        }else{
+            image.width = 0
+
+            text.width = width * 0.94
+
+        }
+        text.text = textsData[0]
+
     }
 
 }
