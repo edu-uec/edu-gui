@@ -33,7 +33,8 @@ SOURCES += \
     commandmodel.cpp \
     commanddao.cpp \
     command.cpp \
-    databasemanager.cpp
+    databasemanager.cpp \
+    commandinterpreter.cpp
 
 RESOURCES += qml.qrc
 
@@ -53,10 +54,11 @@ DISTFILES += \
 
 HEADERS += \
     cppsignalslot.h \
-    unix_socket_client.hpp \
     unix_socket_server.hpp \
     orderprogram.h \
     commandmodel.h \
     commanddao.h \
     command.h \
-    databasemanager.h
+    databasemanager.h \
+    commandinterpreter.h \
+    simpleserial.h
