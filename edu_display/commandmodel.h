@@ -6,8 +6,8 @@
 #include <vector>
 #include <memory>
 
-#include "Command.h"
-#include "DatabaseManager.h"
+#include "command.h"
+#include "databasemanager.h"
 
 class CommandModel : public QAbstractListModel
 {

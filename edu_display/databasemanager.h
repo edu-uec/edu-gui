@@ -5,12 +5,12 @@
 
 #include <QString>
 
-#include "CommandDao.h"
+#include "commanddao.h"
 
 class QSqlQuery;
 class QSqlDatabase;
 
-const QString DATABASE_FILENAME = "gallery.db";
+const QString DATABASE_FILENAME = "commands.db";
 
 class DatabaseManager
 {
