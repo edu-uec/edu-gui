@@ -6,5 +6,7 @@
         <file>EduMessageWindow.qml</file>
         <file>image/qtlogo.png</file>
         <file>image/dog.jpg</file>
+        <file>image/pic1.png</file>
+        <file>image/machineDesign.png</file>
     </qresource>
 </RCC>

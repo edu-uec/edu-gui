@@ -20,23 +20,44 @@ CommandInterpreter::CommandInterpreter(CommandModel& commandModel)
 
 void CommandInterpreter::onCommandArrive(std::string command){
     std::cout << command << std::endl;
-    commandModel_->addCommandFromName(command.c_str());
+
+    char commandType = command[0];
+    int commandId = std::stoi(command.substr(2, 3));
+    auto commandName = command.substr(5).c_str();
+
+    std::cout << "type:" << commandType << " id:" << commandId << " name:"<< commandName << std::endl;
+
 
     std::string portName = "/dev/cu.usbmodem145301";
-    SimpleSerial serialPortInstance(portName, 115200);
+    //SimpleSerial serialPortInstance(portName, 115200);
 
-    if(command == "w_000右"){
-        serialPortInstance.writeString("r");
+    if(commandType == 'w'){
+        commandModel_->addCommandFromName(commandName);
+//        switch (commandId) {
+//            case 0: //w_000みぎをむく
+//              serialPortInstance.writeString("r");
+//            break;
+//        }
     }
-    else if(command == "w_001左"){
-        serialPortInstance.writeString("l");
+    else if(commandType == 'c'){
+
     }
-    else if(command == "w_004前"){
-        serialPortInstance.writeString("f");
-    }
-    else if(command == "w_008止"){
-        serialPortInstance.writeString("s");
-    }
+
+//    if(command == "w_000"){
+//        serialPortInstance.writeString("r");
+//    }
+//    else if(command == "w_001"){
+//        serialPortInstance.writeString("l");
+//    }
+//    else if(command == "w_004前"){
+//        serialPortInstance.writeString("f");
+//    }
+//    else if(command == "w_008止"){
+//        serialPortInstance.writeString("s");
+//    }
+
+
+
 }
 
 

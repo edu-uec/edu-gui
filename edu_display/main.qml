@@ -29,19 +29,17 @@ Window {
                 height: 60
                 opacity: 0.8
                 radius: 10
-                color: Style.buttonBackground
+                color:"#A9F5F2";
 
                 Text {
                     text: name
                     font.pointSize: 16
-                    color: Style.text
                     anchors.centerIn: parent
                 }
 
                 Text {
                     text: index
                     font.pointSize: 16
-                    color: Style.text
                     anchors.left: parent.left
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.leftMargin: 10
