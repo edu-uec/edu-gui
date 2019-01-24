@@ -113,7 +113,7 @@ Window {
 
     Button {
         text: "add"
-        x : 80
+        x : 120
         width:40
 
         onClicked: {
@@ -123,7 +123,7 @@ Window {
 
     Button {
         text: "remove"
-        x : 120
+        x : 160
         width:80
 
         onClicked: {
