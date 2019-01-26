@@ -54,7 +54,7 @@ void CommandDao::removeCommand(int id) const
 
 unique_ptr<vector<unique_ptr<Command>>> CommandDao::commands() const
 {
-    QSqlQuery query("SELECT * FROM albums", mDatabase);
+    QSqlQuery query("SELECT * FROM commands", mDatabase);
     query.exec();
     unique_ptr<vector<unique_ptr<Command>>> list(new vector<unique_ptr<Command>>());
     while(query.next()) {
