@@ -59,7 +59,7 @@ bool CommandModel::setData(const QModelIndex &index, const QVariant &value, int 
     return true;
 }
 
-bool CommandModel::removeRows(int row, int count, const QModelIndex& parent)
+bool CommandModel::removeRows(int row, int count, const QModelIndex&parent)
 {
     if (row < 0
             || row >= rowCount()
