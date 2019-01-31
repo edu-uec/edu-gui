@@ -19,10 +19,10 @@ class CommandInterpreter
 private:
     static CommandInterpreter* instance;
     CommandModel* commandModel_;
-    CommandInterpreter(CommandModel& commandModel);
+    CommandInterpreter(CommandModel* commandModel);
     vector<string> orders;
 public:
-    static CommandInterpreter* getInstance(CommandModel& commandModel);
+    static CommandInterpreter* getInstance(CommandModel* commandModel);
     void onCommandArrive(std::string command);
 };
 

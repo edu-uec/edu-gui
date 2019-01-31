@@ -11,7 +11,7 @@
 
 #include "unix_socket_server.hpp"
 #include "cppsignalslot.h"
-#include "commandinterpreter.h"
+#include "orderprogram.h"
 
 #include "commandmodel.h"
 
@@ -26,6 +26,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     QQmlContext* context = engine.rootContext();
     context->setContextProperty("commandModel", &commandModel);
+    //サーバースレッドのsignalとCommandmodel::addCommandFromName()のconnection
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
@@ -37,8 +38,8 @@ int main(int argc, char *argv[])
     asio::io_service io_service;
     unlink("/tmp/unix_socket_test");
     UnixSocketServer unixSocketServer1(io_service);
-    CommandInterpreter* commandInterpreter =  CommandInterpreter::getInstance(commandModel);
-    unixSocketServer1.commandArriveEvent.connect(boost::bind(&CommandInterpreter::onCommandArrive, commandInterpreter, _1));
+    OrderProgram oprogram;
+    unixSocketServer1.commandArriveEvent.connect(boost::bind(&OrderProgram::onCommandArrive, &oprogram, _1));
     std::thread threadServer([&unixSocketServer1]{
         unixSocketServer1.accept();
         while (true){
@@ -56,9 +57,9 @@ int main(int argc, char *argv[])
     //QObject::connect(const QObject *sender, PointerToMemberFunction signal, const QObject *receiver, PointerToMemberFunction slot, Qt::ConnectionType type )
 //    QObject::connect(root, SIGNAL(qmlSignal(QString)), &obj, SLOT(cppSlots(QString)));
 //    QObject::connect(&obj, SIGNAL(cppSignal(QVariant)), root, SLOT(addBlock(QVariant)));
-//      QObject::connect(&oprogram, SIGNAL(pushOrderSignal(QVariant)), root, SLOT(addBlock(QVariant)));
-//      QObject::connect(&oprogram, SIGNAL(deleteOrderSignal()), root, SLOT(deleteBlock()));
-//      QObject::connect(&oprogram, SIGNAL(changeOrderBlockColorSignal(QVariant, QVariant)), root, SLOT(changeBlockColor(QVariant, QVariant)));
+      QObject::connect(&oprogram, SIGNAL(pushOrderSignal(QVariant)), root, SLOT(addBlock(QVariant)));
+      QObject::connect(&oprogram, SIGNAL(deleteOrderSignal()), root, SLOT(deleteBlock()));
+      QObject::connect(&oprogram, SIGNAL(changeOrderBlockColorSignal(QVariant, QVariant)), root, SLOT(changeBlockColor(QVariant, QVariant)));
 
 
     //qmlにオブジェクトを渡す

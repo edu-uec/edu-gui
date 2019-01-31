@@ -55,13 +55,16 @@ Window {
 
     function addBlock(text) {
         console.log("add as dlgnum = " + dlgNumber);
-        _repeater.model.append({"_src" : _dlgcomponent});
+        commandModel.addCommandFromName(text);
+        //_repeater.model.append({"_src" : _dlgcomponent});
+
     }
 
     function deleteBlock() {
         dlgNumber--;
         console.log("delete as dlgnum = " + dlgNumber);
-        _repeater.model.remove(dlgNumber);
+        commandModel.removeRows(commandModel.rowCount()-1 , 1)
+        //_repeater.model.remove(dlgNumber);
     }
 
     function changeBlockColor(index, color){
