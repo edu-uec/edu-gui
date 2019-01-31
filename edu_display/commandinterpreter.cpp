@@ -4,19 +4,19 @@
 
 CommandInterpreter* CommandInterpreter::instance = nullptr;
 
-CommandInterpreter* CommandInterpreter::getInstance(CommandModel& commandModel)
-{
-    if (instance == nullptr)
-        {
-            instance = new CommandInterpreter(commandModel);
-        }
-        return instance;
-}
+//CommandInterpreter* CommandInterpreter::getInstance(CommandModel& commandModel)
+//{
+//    if (instance == nullptr)
+//        {
+//            instance = new CommandInterpreter(commandModel);
+//        }
+//        return instance;
+//}
 
-CommandInterpreter::CommandInterpreter(CommandModel& commandModel)
-{
-    commandModel_ = &commandModel;
-}
+//CommandInterpreter::CommandInterpreter(CommandModel& commandModel)
+//{
+//    commandModel_ = &commandModel;
+//}
 
 void CommandInterpreter::onCommandArrive(std::string command){
     std::cout << command << std::endl;

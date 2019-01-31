@@ -47,8 +47,7 @@ public:
         //SimpleSerial serialPortInstance(portName, 115200);
 
         if(commandType == 'w'){
-            commandModel_->addCommandFromName(commandName);
-            commandModel_->submit();
+            emit pushOrderSignal(QString::fromStdString(commandName));
             switch (commandId) {
                 case 0: //w_000みぎをむく
     //              serialPortInstance.writeString("r");
@@ -57,16 +56,11 @@ public:
         }
         else if(commandType == 'c'){
             if(commandId == 0){//実行
-                commandModel_->addCommandFromName(commandName);
-            }
-            else if(commandId == 1){//消去
-                commandModel_->removeRows(commandModel_->rowCount()-1, 1);
             }
             else if(commandId == 2){//中止
-                commandModel_->addCommandFromName(commandName);
             }
-            else if(commandId == 3){//一つ戻る
-                commandModel_->addCommandFromName(commandName);
+            else if(commandId == 3){//ブロックを消す
+                emit deleteOrderSignal();
             }
 
         }
