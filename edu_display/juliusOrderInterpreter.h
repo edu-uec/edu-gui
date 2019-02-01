@@ -1,5 +1,5 @@
-#ifndef ORDERPROGRAM_H
-#define ORDERPROGRAM_H
+#ifndef JuliusOrderInterpreter_H
+#define JuliusOrderInterpreter_H
 
 #include<QObject>
 #include<QString>
@@ -12,13 +12,13 @@
 
 using namespace std;
 
-class OrderProgram : public QObject
+class JuliusOrderInterpreter : public QObject
 {
     Q_OBJECT
 public:
     atomic_bool isRunProgram;
 
-    explicit OrderProgram(QObject *parent = std::nullptr_t()) : QObject(parent){
+    explicit JuliusOrderInterpreter(QObject *parent = std::nullptr_t()) : QObject(parent){
         isRunProgram = false;
     }
 
@@ -55,18 +55,33 @@ public:
             }
         }
         else if(commandType == 'c'){
-            if(commandId == 0){//実行
+            switch (commandId) {
+            case 0: //実行
+            {
+                break;
             }
-            else if(commandId == 2){//中止
+            case 2://中止
+            {
+                break;
             }
-            else if(commandId == 3){//ブロックを消す
+            case 3://ブロックを消す
                 emit deleteOrderSignal();
+                break;
+
+            case 4://TEXTページ次
+                emit changeTextPage(true);
+                break;
+
+            case 5://TEXTページ前
+                emit changeTextPage(false);
+                break;
+
             }
 
         }
     }
 
-    void runOrderProgram(){
+    void runJuliusOrderInterpreter(){
         for(string& order : orders){
             if(!isRunProgram) {break;}
             std::cout << "run: " << order << std::endl; //送信処理
@@ -84,6 +99,7 @@ signals:
     void pushOrderSignal(QVariant text);
     void deleteOrderSignal();
     void changeOrderBlockColorSignal(QVariant index, QVariant color);
+    void changeTextPage(QVariant isToNext);
 
 private:
     vector<string> orders;
@@ -91,4 +107,4 @@ private:
 
 
 
-#endif // ORDERPROGRAM_H
+#endif // JuliusOrderInterpreter_H

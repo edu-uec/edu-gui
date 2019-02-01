@@ -56,8 +56,8 @@ Window {
     function addBlock(text) {
         console.log("add as dlgnum = " + dlgNumber);
         commandModel.addCommandFromName(text);
+        commandList.positionViewAtEnd();
         //_repeater.model.append({"_src" : _dlgcomponent});
-
     }
 
     function deleteBlock() {
@@ -78,6 +78,17 @@ Window {
         y: parent.height * 0.5
 
         visible: visibleMessageWindow
+
+
+    }
+
+    function changeContentsByJuliusOI(isToNext){
+        if(isToNext){
+         edu_message.changeNextContents();
+        }
+        else{
+         edu_message.changePrevContents();
+        }
     }
 
     EduFace{
@@ -119,6 +130,7 @@ Window {
 
         onClicked: {
             commandModel.addCommandFromName("Go")
+            commandList.positionViewAtEnd();
         }
     }
 

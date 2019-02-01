@@ -11,7 +11,7 @@
 
 #include "unix_socket_server.hpp"
 #include "cppsignalslot.h"
-#include "orderprogram.h"
+#include "juliusOrderInterpreter.h"
 
 #include "commandmodel.h"
 
@@ -38,8 +38,8 @@ int main(int argc, char *argv[])
     asio::io_service io_service;
     unlink("/tmp/unix_socket_test");
     UnixSocketServer unixSocketServer1(io_service);
-    OrderProgram oprogram;
-    unixSocketServer1.commandArriveEvent.connect(boost::bind(&OrderProgram::onCommandArrive, &oprogram, _1));
+    JuliusOrderInterpreter orderInterpreter;
+    unixSocketServer1.commandArriveEvent.connect(boost::bind(&JuliusOrderInterpreter::onCommandArrive, &orderInterpreter, _1));
     std::thread threadServer([&unixSocketServer1]{
         unixSocketServer1.accept();
         while (true){
@@ -57,13 +57,14 @@ int main(int argc, char *argv[])
     //QObject::connect(const QObject *sender, PointerToMemberFunction signal, const QObject *receiver, PointerToMemberFunction slot, Qt::ConnectionType type )
 //    QObject::connect(root, SIGNAL(qmlSignal(QString)), &obj, SLOT(cppSlots(QString)));
 //    QObject::connect(&obj, SIGNAL(cppSignal(QVariant)), root, SLOT(addBlock(QVariant)));
-      QObject::connect(&oprogram, SIGNAL(pushOrderSignal(QVariant)), root, SLOT(addBlock(QVariant)));
-      QObject::connect(&oprogram, SIGNAL(deleteOrderSignal()), root, SLOT(deleteBlock()));
-      QObject::connect(&oprogram, SIGNAL(changeOrderBlockColorSignal(QVariant, QVariant)), root, SLOT(changeBlockColor(QVariant, QVariant)));
+      QObject::connect(&orderInterpreter, SIGNAL(pushOrderSignal(QVariant)), root, SLOT(addBlock(QVariant)));
+      QObject::connect(&orderInterpreter, SIGNAL(deleteOrderSignal()), root, SLOT(deleteBlock()));
+      QObject::connect(&orderInterpreter, SIGNAL(changeOrderBlockColorSignal(QVariant, QVariant)), root, SLOT(changeBlockColor(QVariant, QVariant)));
+      QObject::connect(&orderInterpreter, SIGNAL(changeTextPage(QVariant)), root, SLOT(changeContentsByJuliusOI(QVariant)));
 
 
     //qmlにオブジェクトを渡す
-//    engine.rootContext()->setContextProperty("orderprogram", &oprogram);
+//    engine.rootContext()->setContextProperty("JuliusOrderInterpreter", &orderInterpreter);
 
     return app.exec();
 }

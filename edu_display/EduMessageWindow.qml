@@ -27,6 +27,12 @@ Rectangle {
         ["僕に「じっこう」っていうとブロックの通りに動くよ", 6],
         ["「じっこう」っていって僕を実際に前に動かして", 6],
         ["動いたかな？\n他の動きも見てみよう", -1],
+
+        //ここまで実装済み
+
+
+        ["僕に「後ろ」って言って", -1],
+        ["僕に「後ろ」って言って", -1],
         ["僕に「後ろ」って言って", -1],
         ["僕に「実行」って言って動かしてみよう", -1],
         ["後ろに動くことができるよ", -1]
@@ -88,7 +94,7 @@ Rectangle {
         height: parent.height * 0.1
     }
 
-    function changeContents(index){
+    function changeTextContents(index){
         textsData = texts[index]
         text.text = textsData[0]
         image.source = images[textsData[1]]
