@@ -23,6 +23,8 @@ int main(int argc, char *argv[])
 
     CommandModel commandModel;
 
+    ProgramRunner::initialize(&commandModel);
+
     QQmlApplicationEngine engine;
     QQmlContext* context = engine.rootContext();
     context->setContextProperty("commandModel", &commandModel);

@@ -34,7 +34,8 @@ SOURCES += \
     command.cpp \
     databasemanager.cpp \
     commandinterpreter.cpp \
-    juliusOrderInterpreter.cpp
+    juliusOrderInterpreter.cpp \
+    programrunner.cpp
 
 RESOURCES += qml.qrc
 
@@ -61,4 +62,5 @@ HEADERS += \
     databasemanager.h \
     commandinterpreter.h \
     simpleserial.h \
-    juliusOrderInterpreter.h
+    juliusOrderInterpreter.h \
+    programrunner.h

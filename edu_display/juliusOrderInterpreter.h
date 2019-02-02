@@ -11,6 +11,8 @@
 #include <list>
 #include <unordered_map>
 
+#include "programrunner.h"
+
 using namespace std;
 
 class JuliusOrderInterpreter : public QObject
@@ -66,6 +68,8 @@ public:
             switch (commandId) {
             case 0: //実行
             {
+                ProgramRunner programRunner;
+                programRunner.runProgram(this);
                 break;
             }
             case 2://中止
