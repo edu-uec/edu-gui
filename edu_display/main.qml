@@ -22,18 +22,22 @@ Window {
             spacing: 5
             anchors.fill: parent
             anchors.margins: 20
+            highlight: Rectangle { color: "#FFFF00"; radius: 10 }
+
+            currentIndex: -1
 
             delegate: Rectangle {
                 anchors.horizontalCenter: parent.horizontalCenter
                 width: parent.width
                 height: 60
-                opacity: 0.8
+                opacity:0.8
                 radius: 10
-                color:"#A9F5F2";
+                color: "#A9FFFF"
 
                 Text {
                     text: name
                     font.pointSize: 16
+
                     anchors.centerIn: parent
                 }
 
@@ -57,14 +61,14 @@ Window {
         console.log("add as dlgnum = " + dlgNumber);
         commandModel.addCommandFromName(text);
         commandList.positionViewAtEnd();
-        //_repeater.model.append({"_src" : _dlgcomponent});
+        //commandList.model.append({"_src" : _dlgcomponent});
     }
 
     function deleteBlock() {
         dlgNumber--;
         console.log("delete as dlgnum = " + dlgNumber);
         commandModel.removeRows(commandModel.rowCount()-1 , 1)
-        //_repeater.model.remove(dlgNumber);
+        //commandList.model.remove(dlgNumber);
     }
 
     function changeBlockColor(index, color){
@@ -78,8 +82,6 @@ Window {
         y: parent.height * 0.5
 
         visible: visibleMessageWindow
-
-
     }
 
     function changeContentsByJuliusOI(isToNext){
@@ -149,7 +151,7 @@ Window {
     Column {
         spacing: 10
         Repeater {
-            id: _repeater
+            id: _repater
             model: ListModel {}
             Loader {
                 sourceComponent: _src
@@ -171,19 +173,15 @@ Window {
         }
     }
 
-    function setPresentOrderBoxesState(index){
-        if(_repeater.count > 0){
-        var thisIndex = index % _repeater.count
-        var preIndex = (index - 1) % _repeater.count
-        console.log("i:" + index, "t:" + thisIndex, "p:" + preIndex, "rc:" + _repeater.count)
-        if(preIndex >= 0){ changeOrderBoxColor(preIndex, false) }
-        changeOrderBoxColor(thisIndex, true)
-        }
+    function setListviewCurrentIndex(index){
+            commandList.currentIndex = index
+    }
 
-    }
-    function changeOrderBoxColor(index, inProcess){
-        _repeater.itemAt(index).rColor = inProcess ? "#ffff00" : "#aaffff"
-    }
+//    function changeOrderBoxColor(index, inProcess){
+//        var qModelIndex = commandModel.index(index, 0)
+//        var text = inProcess ? "Run" : "Finished"
+//        commandModel.setData(qModelIndex, text, 258)
+//    }
 
     Component {
         id: _dlg

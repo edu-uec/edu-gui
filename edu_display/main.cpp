@@ -61,8 +61,8 @@ int main(int argc, char *argv[])
 //    QObject::connect(&obj, SIGNAL(cppSignal(QVariant)), root, SLOT(addBlock(QVariant)));
       QObject::connect(&orderInterpreter, SIGNAL(pushOrderSignal(QVariant)), root, SLOT(addBlock(QVariant)));
       QObject::connect(&orderInterpreter, SIGNAL(deleteOrderSignal()), root, SLOT(deleteBlock()));
-      QObject::connect(&orderInterpreter, SIGNAL(changeOrderBlockColorSignal(QVariant, QVariant)), root, SLOT(changeBlockColor(QVariant, QVariant)));
       QObject::connect(&orderInterpreter, SIGNAL(changeTextPage(QVariant)), root, SLOT(changeContentsByJuliusOI(QVariant)));
+      QObject::connect(&orderInterpreter, SIGNAL(setListviewCurrentIndex(QVariant)), root, SLOT(setListviewCurrentIndex(QVariant)));
 
 
     //qmlにオブジェクトを渡す
