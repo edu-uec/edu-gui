@@ -9,6 +9,7 @@
 #include <thread>
 #include <unistd.h>
 #include <list>
+#include <unordered_map>
 
 using namespace std;
 
@@ -17,9 +18,16 @@ class JuliusOrderInterpreter : public QObject
     Q_OBJECT
 public:
     atomic_bool isRunProgram;
+    std::unordered_map<int, string> wCommands;
 
     explicit JuliusOrderInterpreter(QObject *parent = std::nullptr_t()) : QObject(parent){
         isRunProgram = false;
+
+        wCommands[0] = "みぎをむく";
+        wCommands[1] = "ひだりをむく";
+        wCommands[4] = "まえにすすむ";
+        wCommands[5] = "うしろにすすむ";
+        wCommands[8] = "とまる";
     }
 
     Q_INVOKABLE QString getOrderName(int index) const{
@@ -40,14 +48,14 @@ public:
         int commandId = std::stoi(command.substr(2, 3));
         auto commandName = command.substr(5).c_str();
 
-        std::cout << "type:" << commandType << " id:" << commandId << " name:"<< commandName << std::endl;
+        std::cout << "type:" << commandType << " id:" << commandId << std::endl;
 
 
         std::string portName = "/dev/cu.usbmodem145301";
         //SimpleSerial serialPortInstance(portName, 115200);
 
         if(commandType == 'w'){
-            emit pushOrderSignal(QString::fromStdString(commandName));
+            emit pushOrderSignal(QString::fromStdString(wCommands[commandId]));
             switch (commandId) {
                 case 0: //w_000みぎをむく
     //              serialPortInstance.writeString("r");
