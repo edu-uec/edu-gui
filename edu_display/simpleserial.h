@@ -43,7 +43,7 @@ class SimpleSerial
         std::string result;
         for (;;)
         {
-            asio::read(serial, asio::buffer(&c, 1));
+            boost::asio::read(serial, boost::asio::buffer(&c, 1));
             switch (c)
             {
             case '\r':
