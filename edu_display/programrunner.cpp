@@ -39,6 +39,7 @@ void ProgramRunner::runProgram(JuliusOrderInterpreter *orderInterpreter)
         serialPortInstance->writeString(arduinoCommandMap[name.toStdString()]);
         QThread::sleep(1);
     }
+    orderInterpreter->setListviewCurrentIndex(-1);
 }
 
 CommandModel* ProgramRunner::mCommandModel = nullptr;
