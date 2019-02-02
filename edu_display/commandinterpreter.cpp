@@ -4,19 +4,19 @@
 
 CommandInterpreter* CommandInterpreter::instance = nullptr;
 
-CommandInterpreter* CommandInterpreter::getInstance(CommandModel& commandModel)
-{
-    if (instance == nullptr)
-        {
-            instance = new CommandInterpreter(commandModel);
-        }
-        return instance;
-}
+//CommandInterpreter* CommandInterpreter::getInstance(CommandModel& commandModel)
+//{
+//    if (instance == nullptr)
+//        {
+//            instance = new CommandInterpreter(commandModel);
+//        }
+//        return instance;
+//}
 
-CommandInterpreter::CommandInterpreter(CommandModel& commandModel)
-{
-    commandModel_ = &commandModel;
-}
+//CommandInterpreter::CommandInterpreter(CommandModel& commandModel)
+//{
+//    commandModel_ = &commandModel;
+//}
 
 void CommandInterpreter::onCommandArrive(std::string command){
     std::cout << command << std::endl;
@@ -33,13 +33,37 @@ void CommandInterpreter::onCommandArrive(std::string command){
 
     if(commandType == 'w'){
         commandModel_->addCommandFromName(commandName);
-//        switch (commandId) {
-//            case 0: //w_000みぎをむく
+        commandModel_->submit();
+        switch (commandId) {
+            case 0: //w_000みぎをむく
 //              serialPortInstance.writeString("r");
-//            break;
-//        }
+            break;
+        }
     }
     else if(commandType == 'c'){
+        switch (commandId) {
+            case 0: //c_000RUN実行
+            break;
+
+            case 2: //c_002RUN中止
+
+            break;
+
+            case 3: //c_003ブロックを消す
+            {
+                std::cout << "rmIndex:" << commandModel_->rowCount() - 1 << std::endl;
+                int i = commandModel_->rowCount() - 1;
+
+                commandModel_->removeRows(i, 1);
+                break;
+            }
+
+            case 4: //c_004TEXTページ次
+            break;
+
+            case 5: //c_005TEXTページ前
+            break;
+        }
 
     }
 
@@ -59,5 +83,3 @@ void CommandInterpreter::onCommandArrive(std::string command){
 
 
 }
-
-

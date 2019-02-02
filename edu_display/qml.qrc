@@ -8,5 +8,11 @@
         <file>image/dog.jpg</file>
         <file>image/pic1.png</file>
         <file>image/machineDesign.png</file>
+        <file>image/pic2.png</file>
+        <file>image/pic_voiceCommandDelete.png</file>
+        <file>image/pic_voiceCommandGoBack.png</file>
+        <file>image/pic3.png</file>
+        <file>image/pic_commandDeleted.png</file>
+        <file>image/pic_voiceCommandRun.png</file>
     </qresource>
 </RCC>

@@ -17,6 +17,7 @@ QModelIndex CommandModel::addCommand(const Command &command)
     mDb.commandDao.addCommand(*newCommand);
     mCommands->push_back(move(newCommand));
     endInsertRows();
+    //emit dataChanged(index(rowIndex), index(rowIndex));
     return index(rowIndex, 0);
 }
 
@@ -54,11 +55,11 @@ bool CommandModel::setData(const QModelIndex &index, const QVariant &value, int 
     Command& command = * mCommands->at(index.row());
     command.setName(value.toString());
     mDb.commandDao.updateCommand(command);
-    emit dataChanged(index, index);
+    //emit dataChanged(index, index);
     return true;
 }
 
-bool CommandModel::removeRows(int row, int count, const QModelIndex& parent)
+bool CommandModel::removeRows(int row, int count, const QModelIndex&parent)
 {
     if (row < 0
             || row >= rowCount()
@@ -75,6 +76,7 @@ bool CommandModel::removeRows(int row, int count, const QModelIndex& parent)
     mCommands->erase(mCommands->begin() + row,
                    mCommands->begin() + row + count);
     endRemoveRows();
+    emit dataChanged(index(row), index(row));
     return true;
 }
 

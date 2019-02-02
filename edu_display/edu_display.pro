@@ -29,12 +29,12 @@ LIBS += -lboost_system # using dynamic lib (not sure if you need that "-mt" at t
 SOURCES += \
         main.cpp \
     cppsignalslot.cpp \
-    orderprogram.cpp \
     commandmodel.cpp \
     commanddao.cpp \
     command.cpp \
     databasemanager.cpp \
-    commandinterpreter.cpp
+    commandinterpreter.cpp \
+    juliusOrderInterpreter.cpp
 
 RESOURCES += qml.qrc
 
@@ -55,10 +55,10 @@ DISTFILES += \
 HEADERS += \
     cppsignalslot.h \
     unix_socket_server.hpp \
-    orderprogram.h \
     commandmodel.h \
     commanddao.h \
     command.h \
     databasemanager.h \
     commandinterpreter.h \
-    simpleserial.h
+    simpleserial.h \
+    juliusOrderInterpreter.h

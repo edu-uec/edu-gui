@@ -55,13 +55,16 @@ Window {
 
     function addBlock(text) {
         console.log("add as dlgnum = " + dlgNumber);
-        _repeater.model.append({"_src" : _dlgcomponent});
+        commandModel.addCommandFromName(text);
+        commandList.positionViewAtEnd();
+        //_repeater.model.append({"_src" : _dlgcomponent});
     }
 
     function deleteBlock() {
         dlgNumber--;
         console.log("delete as dlgnum = " + dlgNumber);
-        _repeater.model.remove(dlgNumber);
+        commandModel.removeRows(commandModel.rowCount()-1 , 1)
+        //_repeater.model.remove(dlgNumber);
     }
 
     function changeBlockColor(index, color){
@@ -75,6 +78,17 @@ Window {
         y: parent.height * 0.5
 
         visible: visibleMessageWindow
+
+
+    }
+
+    function changeContentsByJuliusOI(isToNext){
+        if(isToNext){
+         edu_message.changeNextContents();
+        }
+        else{
+         edu_message.changePrevContents();
+        }
     }
 
     EduFace{
@@ -116,6 +130,7 @@ Window {
 
         onClicked: {
             commandModel.addCommandFromName("Go")
+            commandList.positionViewAtEnd();
         }
     }
 
