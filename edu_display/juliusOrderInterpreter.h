@@ -71,7 +71,7 @@ public:
                 ProgramRunner programRunner;
                 programRunner.runProgram(this);
 
-                emit setListviewCurrentIndex(1);
+                emit setListviewCurrentIndex(-1);
                 break;
             }
             case 2://中止

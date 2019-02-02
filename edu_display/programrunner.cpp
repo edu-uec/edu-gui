@@ -1,5 +1,6 @@
 #include "programrunner.h"
 #include "commandmodel.h"
+#include "juliusOrderInterpreter.h"
 
 #include <QString>
 #include <QThread>
@@ -14,7 +15,7 @@ ProgramRunner::ProgramRunner(QObject *parent) : QObject(parent)
     arduinoCommandMap["とまる"] = ""; //Do nothing
     arduinoCommandMap["Go"] = ""; //Do nothing
 
-    serialPortInstance.reset(new SimpleSerial(portName, 115200));
+    //serialPortInstance.reset(new SimpleSerial(portName, 115200));
 }
 
 void ProgramRunner::initialize(CommandModel* commandModel)
@@ -33,7 +34,8 @@ void ProgramRunner::runProgram(JuliusOrderInterpreter *orderInterpreter)
     {
         QString name = mCommandModel->data(mCommandModel->index(i), 258).toString();
         std::cout << name.toStdString() << std::endl;
-        serialPortInstance->writeString(arduinoCommandMap[name.toStdString()]);
+        orderInterpreter->setListviewCurrentIndex(i);
+        //serialPortInstance->writeString(arduinoCommandMap[name.toStdString()]);
         QThread::sleep(1);
     }
 }
