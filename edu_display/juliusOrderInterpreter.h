@@ -66,6 +66,7 @@ public:
             switch (commandId) {
             case 0: //実行
             {
+                emit setListviewCurrentIndex(1);
                 break;
             }
             case 2://中止
@@ -93,7 +94,6 @@ public:
         for(string& order : orders){
             if(!isRunProgram) {break;}
             std::cout << "run: " << order << std::endl; //送信処理
-            emit changeOrderBlockColorSignal(0, "#ff0000");
             std::chrono::milliseconds time(2000);
             std::this_thread::sleep_for(time);
         }
@@ -106,8 +106,8 @@ public:
 signals:
     void pushOrderSignal(QVariant text);
     void deleteOrderSignal();
-    void changeOrderBlockColorSignal(QVariant index, QVariant color);
     void changeTextPage(QVariant isToNext);
+    void setListviewCurrentIndex(QVariant index);
 
 private:
     vector<string> orders;
