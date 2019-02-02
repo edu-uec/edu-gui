@@ -16,7 +16,7 @@ public:
     explicit ProgramRunner(QObject *parent = std::nullptr_t());
     static void initialize(CommandModel* commandModel);
     void runProgram(JuliusOrderInterpreter *orderInterpreter);
-    std::string portName = "/dev/cu.usbmodem145301";
+    std::string portName;
 private:
     static CommandModel* mCommandModel;
     std::unordered_map<std::string, std::string> arduinoCommandMap;
